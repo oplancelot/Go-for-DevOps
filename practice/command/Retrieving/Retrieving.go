@@ -9,6 +9,7 @@ import (
 	"regexp"
 )
 
+//这里定义需要查找的字符
 // var errRE = regexp.MustCompile(`(?i)error`)
 
 var errRE = regexp.MustCompile(`(?i)123`)
