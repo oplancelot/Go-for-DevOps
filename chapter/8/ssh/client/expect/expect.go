@@ -13,13 +13,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/google/goexpect"
+	expect "github.com/google/goexpect"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/terminal"
 )
 
 var (
-	private = flag.String("private", "", "The path to the SSH private key for this connection")
+	private = flag.String("private", "/root/.ssh/id_rsa", "The path to the SSH private key for this connection")
 )
 
 func main() {
@@ -145,7 +145,7 @@ func installExpect(conn *ssh.Client) (err error) {
 	}
 	defer e.Close()
 
-	var promptRE = regexp.MustCompile(`\$ `)
+	var promptRE = regexp.MustCompile(`\# `)
 
 	_, _, err = e.Expect(promptRE, 10*time.Second)
 	if err != nil {
